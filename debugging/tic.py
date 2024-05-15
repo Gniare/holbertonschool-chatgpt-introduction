@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+def print_board(board):
+    for row in board:
+        print(" | ".join(row))
+        print("-" * 5)
 
 def check_winner(board):
     for row in board:
@@ -17,28 +21,17 @@ def check_winner(board):
 
     return False
 
-def print_board(board):
-    for row in board:
-        print(" | ".join(row))
-        print("-" * 5)
-
 def tic_tac_toe():
     board = [[" "]*3 for _ in range(3)]
     player = "X"
-    while not check_winner(board):
+    moves = 0
+    while not check_winner(board) and moves < 9:
         print_board(board)
-        try:
-            row = int(input("Enter row (0, 1, or 2) for player " + player + ": "))
-            col = int(input("Enter column (0, 1, or 2) for player " + player + ": "))
-            if row not in range(3) or col not in range(3):
-                print("Invalid input! Row and column should be in the range 0-2.")
-                continue
-        except ValueError:
-            print("Invalid input! Row and column should be integers.")
-            continue
-        
+        row = int(input("Enter row (0, 1, or 2) for player " + player + ": "))
+        col = int(input("Enter column (0, 1, or 2) for player " + player + ": "))
         if board[row][col] == " ":
             board[row][col] = player
+            moves += 1
             if player == "X":
                 player = "O"
             else:

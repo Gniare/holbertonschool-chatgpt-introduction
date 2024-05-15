@@ -22,24 +22,22 @@ def main():
     cb = Checkbook()
     while True:
         action = input("What would you like to do? (deposit, withdraw, balance, exit): ")
-        if action.lower() == 'exit':
-            break
-        elif action.lower() == 'deposit':
-            try:
+        try:
+            if action.lower() == 'exit':
+                break
+            elif action.lower() == 'deposit':
                 amount = float(input("Enter the amount to deposit: $"))
                 cb.deposit(amount)
-            except ValueError:
-                print("Invalid input. Please enter a valid amount.")
-        elif action.lower() == 'withdraw':
-            try:
+            elif action.lower() == 'withdraw':
                 amount = float(input("Enter the amount to withdraw: $"))
                 cb.withdraw(amount)
-            except ValueError:
-                print("Invalid input. Please enter a valid amount.")
-        elif action.lower() == 'balance':
-            cb.get_balance()
-        else:
-            print("Invalid command. Please try again.")
+            elif action.lower() == 'balance':
+                cb.get_balance()
+            else:
+                print("Invalid command. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a valid numeric value.")
 
 if __name__ == "__main__":
     main()
+    
